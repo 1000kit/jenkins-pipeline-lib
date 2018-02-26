@@ -3,13 +3,15 @@
 def version(String path) {
     def contents = readFile(path)
     def project = new XmlSlurper().parseText(contents)
-    return project.version.text().trim()
+    def version = project.version.text().trim()
+    return version
 }
 
 def majorVersion(String path) {
     def version = version(path)
     if(version.count(".") >= 2){
-        return version.trim().split("\\.")[0]
+        def major = version.trim().split("\\.")[0]
+        return major
     }
     return ""
 }
@@ -17,7 +19,8 @@ def majorVersion(String path) {
 def minorVersion(String path) {
     def version = version(path)
     if(version.count(".") >= 2){
-        return version.trim().split("\\.")[1]
+        def minor = version.trim().split("\\.")[1]
+        return minor
     }
     return ""
 }
@@ -25,7 +28,8 @@ def minorVersion(String path) {
 def patchVersion(String path) {
     def version = version(path)
     if(version.count(".") >= 2){
-        return version.trim().split("\\.")[2]
+        def patch = version.trim().split("\\.")[2]
+        return patch
     }
     return ""
 }
@@ -33,7 +37,8 @@ def patchVersion(String path) {
 def buildVersion(String path) {
     def version = version(path)
     if(version.count(".") == 3){
-        return version.trim().split("\\.")[3]
+        def build = version.trim().split("\\.")[3]
+        return build
     }
     return ""
 }
