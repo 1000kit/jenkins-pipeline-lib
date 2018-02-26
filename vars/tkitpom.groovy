@@ -4,43 +4,25 @@ def version(String path) {
     def contents = readFile(path)
     def project = new XmlSlurper().parseText(contents)
     def version = project.version.text().trim()
-    return version
+    PomVersion pomVersion = new PomVersion()
+    pomVersion.setVersion(version)
+    return pomVersion
 }
 
-def majorVersion(String path) {
-    def version = version(path)
-    if(version.count(".") >= 1){
-        def major = version.trim().tokenize("\\.-")[0]
-        return major
-    }
-    return ""
+def majorVersion(PomVersion pomVersion) {
+    return pomVersion.getMajor()
 }
 
-def minorVersion(String path) {
-    def version = version(path)
-    if(version.count(".") >= 1){
-        def minor = version.trim().tokenize("\\.-")[1]
-        return minor
-    }
-    return ""
+def minorVersion(PomVersion pomVersion) {
+    return pomVersion.getMinor()
 }
 
-def patchVersion(String path) {
-    def version = version(path)
-    if(version.count(".") >= 2){
-        def patch = version.trim().tokenize("\\.-")[2]
-        return patch
-    }
-    return ""
+def patchVersion(PomVersion pomVersion) {
+    return pomVersion.getPatch()
 }
 
-def buildVersion(String path) {
-    def version = version(path)
-    if(version.count(".") >= 3){
-        def build = version.trim().tokenize("\\.-")[3]
-        return build
-    }
-    return ""
+def buildVersion(PomVersion pomVersion) {
+    return pomVersion.getBuild()
 }
 
 
