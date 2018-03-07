@@ -25,9 +25,12 @@ public class PomVersion {
      	if (tokens.size() > versArray.size() ) {
     		versArray = new String[tokens.size()]();
     	}
-    	for ( int i; i< tokens.size(); i++) {
+    	for ( int i=0; i< tokens.size(); i++) {
+    		println "   copy array $i"
+    		println "   from $tokens  to $versArray"
     		versArray[i] = tokens[i]
     	}
+    	println "    ready copy: $versArray"
     	println "done setVersion"
     }
 
