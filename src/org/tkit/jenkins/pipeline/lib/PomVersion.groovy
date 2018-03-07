@@ -11,7 +11,7 @@ public class PomVersion {
     
     def tokens;
     def boolean isSnapshot=false
-	def versArray=["","","",""]
+	def String[] versArray=["","","",""]
 	
     public void setVersion(String version) {
     println "setVersion $version"

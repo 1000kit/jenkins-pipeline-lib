@@ -98,4 +98,23 @@ class PomVersionTest {
     	println "passed:  $curVers"
     	assert curVers == "2.3.4.1-SNAPSHOT"
     }
+    
+     @Test
+    void testShort() {
+    	PomVersion pomVersion = new PomVersion()
+        pomVersion.setVersion("1.0-SNAPSHOT")
+    	           
+        def major = pomVersion.getMajor() 
+        assert major != null
+        assert major == "1"
+        
+       	def minor = pomVersion.getMinor() 
+        assert minor != null
+        assert minor == "0"
+        
+        def patch = pomVersion.getPatch() 
+        assert patch != null
+        assert patch == ""      
+    }
+
 }
