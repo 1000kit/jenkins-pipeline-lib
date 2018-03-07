@@ -11,9 +11,10 @@ public class PomVersion {
     
     def tokens;
     def boolean isSnapshot=false
-	def String[] versArray=["","","",""]
+	def versArray=["","","",""]
 	
     public void setVersion(String version) {
+    println "setVersion $version"
     	if ( version == null ) {
     	     return;                    
     	}
@@ -27,13 +28,16 @@ public class PomVersion {
     	for ( int i; i< tokens.size(); i++) {
     		versArray[i] = tokens[i]
     	}
+    	println "done setVersion"
     }
 
     public String get(int pos) {
+    println "getPos $pos"
     	String res="";
     	if(pos > 0 && versArray.size() >= pos){   
          	res = versArray[pos-1]
          }          
+     println "return $res"
          return res
     }
     public String getMajor() {
