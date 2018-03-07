@@ -19,17 +19,22 @@ def readVersion(path) {
     return pomVersion
 }
 
-def setVersion(version) {
-	echo "createVersion"
-	def pomVersion = new PomVersion()
-	echo "set pom Version"
-	pomVersion.setVersion(version)
-	echo "return pomVersion"
-    return pomVersion
-	
+
+
+def incrementRelease(String version, int pos = 4) {
+      def pomVersion = new PomVersion() 
+      pomVersion.setVersion(version)
+      pomVersion.increment(pos)
+      def newVers = pomVersion.getRelease()    
+      return newVers                           
 }
-
-
+def setRelease(String value, int pos = 4) {
+      def pomVersion = new PomVersion() 
+      pomVersion.setVersion(version)
+      pomVersion.set(pos, value)
+      def newVers = pomVersion.getRelease()    
+      return newVers                           
+}
 
 def artifactId(String path) {
     def contents = readFile(path)

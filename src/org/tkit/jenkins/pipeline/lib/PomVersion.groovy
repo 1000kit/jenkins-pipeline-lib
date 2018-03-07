@@ -1,6 +1,6 @@
 package org.tkit.jenkins.pipeline.lib
 
-public class PomVersion {
+public class PomVersion implements Serializable {
 	public int MAJOR=1;
 	public int MINOR=2;
 	public int PATCH=3;
@@ -35,13 +35,16 @@ public class PomVersion {
     }
 
     public String get(int pos) {
-    println "getPos $pos"
     	String res="";
     	if(pos > 0 && versArray.size() >= pos){   
          	res = versArray[pos-1]
          }          
-     println "return $res"
          return res
+    }
+    public String set(int pos, String value) {   	
+    	if(pos > 0 && versArray.size() >= pos){   
+         	versArray[pos-1] = value
+         }           
     }
     public String getMajor() {
          return get(MAJOR)
