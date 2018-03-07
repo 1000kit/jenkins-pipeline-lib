@@ -34,12 +34,15 @@ class PomVersionTest {
         def build = pomVersion.getBuild() 
         println "build: $build"
         assert build != null
-        assert build == "SNAPSHOT"     
+        assert build == ""     
+        
+        def releaseVers=pomVersion.getRelease();
+        println "releaseVersion: $releaseVers"
     }
 
 
     @Test
-    void getBuildVersion() {
+    void getVersion() {
         PomVersion pomVersion = new PomVersion()
         String expectedArg = '2'
         pomVersion.setVersion("1.2.3.4-SNAPSHOT")
@@ -58,7 +61,41 @@ class PomVersionTest {
         
         def build = pomVersion.getBuild() 
         assert build != null
-        assert build == "4"     
+        assert build == "4"  
+        
+        def releaseVers=pomVersion.getRelease();
+        println "releaseVersion: $releaseVers"
     }
-
+    
+    @Test
+    void getIncrement() {
+    	PomVersion pomVersion = new PomVersion()
+        pomVersion.setVersion("1.2.3-SNAPSHOT")
+    	
+    	println "check increment"
+    	def release = pomVersion.increment(pomVersion.MAJOR).getRelease()
+    	println "passed:  $release"
+    	assert release == "2.2.3"
+    	
+    	
+    	release = pomVersion.increment(pomVersion.MINOR).getRelease()
+    	println "passed:  $release"
+    	assert release == "2.3.3"
+    	
+     	release = pomVersion.increment(pomVersion.PATCH).getRelease()
+     	println "passed:  $release"
+    	assert release == "2.3.4"
+     	
+     	release = pomVersion.increment(pomVersion.BUILD).getRelease()
+     	println "passed:  $release"
+    	assert release == "2.3.4.0"
+      	
+      	release = pomVersion.increment(pomVersion.BUILD).getRelease()
+      	println "passed:  $release"
+    	assert release == "2.3.4.1"
+    	
+    	def curVers = pomVersion.getCurrent()
+    	println "passed:  $curVers"
+    	assert curVers == "2.3.4.1-SNAPSHOT"
+    }
 }

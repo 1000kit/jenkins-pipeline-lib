@@ -6,7 +6,7 @@ import tkitpom
 class tkpitpomTest {
 
 
-    @BeforeClass
+    //@BeforeClass
     static void setup() {
         tkitpom.metaClass.echo {
             println it
@@ -14,7 +14,7 @@ class tkpitpomTest {
         }
     }
 
-    @Test
+    //@Test
     void getMajorVersion() {
     	def tkp = new tkitpom()
     	def pf = 'pomTest.xml'
