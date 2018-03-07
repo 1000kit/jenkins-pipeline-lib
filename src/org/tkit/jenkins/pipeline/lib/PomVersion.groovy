@@ -64,11 +64,15 @@ public class PomVersion implements Serializable {
     
     public String getRelease() {
     	String v="";
+    	int counter =0;
     	for(int i; i< versArray.size(); i++ ) {
-    	   if(i != 0 && versArray[i].length() > 0) {
-    	   	  v+="."
-    	   }
-    	   v+=versArray[i];                        
+    	   if (versArray[i] != null && versArray[i].length() > 0) {
+	    	   if(counter != 0) {
+	    	   	  v+="."
+	    	   }
+	    	   v+=versArray[i]; 
+	    	   counter ++;  
+	    	}                     
     	}
     	return v
     }
