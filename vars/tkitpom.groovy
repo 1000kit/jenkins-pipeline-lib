@@ -9,10 +9,13 @@ def readVersion(path) {
     	def contents = readFile(path)
     	def project = new XmlSlurper().parseText(contents)
     	def version = project.version.text().trim()
+    	echo "version read: $version"
     	pomVersion.setVersion(version)
+    	echo "set pom Version"
     } catch (Exception ex) {
     	echo "caught exception $ex"
     }
+    echo "return pomVersion"
     return pomVersion
 }
 
