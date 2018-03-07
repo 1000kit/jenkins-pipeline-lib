@@ -19,20 +19,14 @@ def readVersion(path) {
     return pomVersion
 }
 
-def majorVersion(pomVersion) {
-    return pomVersion.getMajor()
-}
-
-def minorVersion(pomVersion) {
-    return pomVersion.getMinor()
-}
-
-def patchVersion(pomVersion) {
-    return pomVersion.getPatch()
-}
-
-def buildVersion(pomVersion) {
-    return pomVersion.getBuild()
+def setVersion(version) {
+	echo "createVersion"
+	def pomVersion = new PomVersion()
+	echo "set pom Version"
+	pomVersion.setVersion(version)
+	echo "return pomVersion"
+    return pomVersion
+	
 }
 
 
