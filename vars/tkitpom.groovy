@@ -22,10 +22,15 @@ def readVersion(path) {
 
 
 def incrementRelease(String version, int pos = 4) {
-      def pomVersion = new PomVersion() 
+	  echo "increment: $version  -- $pos" 
+      def pomVersion = new PomVersion()
+      echo "2" 
       pomVersion.setVersion(version)
+      echo "3"
       pomVersion.increment(pos)
-      def newVers = pomVersion.getRelease()    
+      echo "4"
+      def newVers = pomVersion.getRelease()
+      echo "new Version: $newVers"    
       return newVers                           
 }
 def setRelease(String value, int pos = 4) {
