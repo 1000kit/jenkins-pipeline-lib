@@ -22,13 +22,13 @@ public class PomVersion implements Serializable {
     	this.originalVersion = version
     	this.releaseVersion=version.replace("-SNAPSHOT","")
      	tokens = this.releaseVersion.trim().tokenize("\\.")
-     	if (tokens.size() > versArray.size() ) {
-    		versArray = new String[tokens.size()]();
+     	if (tokens.size() > this.versArray.size() ) {
+    		this.versArray = new String[this.tokens.size()]();
     	}
-    	for ( int i=0; i< tokens.size(); i++) {
+    	for ( int i=0; i< this.tokens.size(); i++) {
     		println "   copy array $i"
     		println "   from $tokens  to $versArray"
-    		versArray[i] = tokens[i]
+    		this.versArray[i] = this.tokens[i]
     	}
     	println "    ready copy: $versArray"
     	println "done setVersion"
@@ -36,14 +36,14 @@ public class PomVersion implements Serializable {
 
     public String get(int pos) {
     	String res="";
-    	if(pos > 0 && versArray.size() >= pos){   
-         	res = versArray[pos-1]
+    	if(pos > 0 && this.versArray.size() >= pos){   
+         	res = this.versArray[pos-1]
          }          
          return res
     }
     public String set(int pos, String value) {   	
-    	if(pos > 0 && versArray.size() >= pos){   
-         	versArray[pos-1] = value
+    	if(pos > 0 && this.versArray.size() >= pos){   
+         	this.versArray[pos-1] = value
          }           
     }
     public String getMajor() {
@@ -65,17 +65,20 @@ public class PomVersion implements Serializable {
     public String getRelease() {
     	String v="";
     	int counter =0;
-    	for(int i; i< versArray.size(); i++ ) {
-    	   if (versArray[i] != null && versArray[i].length() > 0) {
+    	for(int i=0; i< this.versArray.size(); i++ ) {
+    	   if (this.versArray[i] != null && this.versArray[i]?.length() > 0) {
 	    	   if(counter != 0) {
 	    	   	  v+="."
 	    	   }
-	    	   v+=versArray[i]; 
+	    	   v+=this.versArray[i]; 
 	    	   counter ++;  
 	    	}                     
     	}
     	return v
     }
+	public String[] getVersArray() {
+		return this.versArray;
+	}
     public String getCurrent() {
     	String v = getRelease();
     	if (this.isSnapshot) {
@@ -85,15 +88,15 @@ public class PomVersion implements Serializable {
     }
     
     public PomVersion increment(int pos) {
-    	if ( pos > 0 && pos <= versArray.size() ) {  		
-    		String v = versArray[pos-1]
+    	if ( pos > 0 && pos <= this.versArray.size() ) {  		
+    		String v = this.versArray[pos-1]
     		int vi = 0;
     		if ( v.length() > 0 ) {
     		  vi = toInt(v)
     		  vi = vi + 1
     		}
     		if (vi >=0) {
-    			versArray[pos-1] = "" + vi
+    			this.versArray[pos-1] = "" + vi
     		}
     	}
     	return this
