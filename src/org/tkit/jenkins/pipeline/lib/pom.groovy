@@ -1,4 +1,4 @@
-
+package org.tkit.jenkins.pipeline.lib
 
 def version(String path) {
     def contents = readFile(path)

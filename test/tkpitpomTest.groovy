@@ -6,7 +6,7 @@ import tkitpom
 class tkpitpomTest {
 
 
-    //@BeforeClass
+    @BeforeClass
     static void setup() {
         tkitpom.metaClass.echo {
             println it
@@ -14,31 +14,17 @@ class tkpitpomTest {
         }
     }
 
-    //@Test
-    void getMajorVersion() {
+    @Test
+    void getIncrementVersion() {
     	def tkp = new tkitpom()
     	def pf = 'pomTest.xml'
-    	def pomVersion = tkp.readVersion(pf)
+    	def pomVersion = tkp.incrementRelease("1.2.3-SNAPSHOT",4)
   
-		def major = pomVersion.getMajor() 
-		println "major: $major"
-        assert major != null
-        assert major == "1"
-        
-       	def minor = pomVersion.getMinor() 
-       	println "minor: $minor"
-        assert minor != null
-        assert minor == "2"
-        
-        def patch = pomVersion.getPatch()
-        println "patch: $patch" 
-        assert patch != null
-        assert patch == "3" 
-        
-        def build = pomVersion.getBuild() 
-        println "build: $build"
-        assert build != null
-        assert build == "SNAPSHOT"     
+		
+        assert pomVersion != null
+        println "pomVersion: $pomVersion"
+        assert pomVersion == "1.2.3.0"
+             
     }
 
 }
