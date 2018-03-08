@@ -76,9 +76,7 @@ public class PomVersion implements Serializable {
     	}
     	return v
     }
-	public String[] getVersArray() {
-		return this.versArray;
-	}
+
     public String getCurrent() {
     	String v = getRelease();
     	if (this.isSnapshot) {

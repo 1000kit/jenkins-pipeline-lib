@@ -29,8 +29,6 @@ def incrementRelease(String version, int pos = 4) {
       echo "3"
       pomVersion.increment(pos)
       echo "4"
-	  def versArray = pomVersion.getVersArray()
-	  echo "versArray: $versArray"
       def newVers = pomVersion.getRelease()
       echo "new Version: $newVers"    
       return newVers                           
